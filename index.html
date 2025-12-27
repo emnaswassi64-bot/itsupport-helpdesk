@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITsupport – IT Help Desk</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0a0f1f;
+  color:#e0f7ff
+}
+
+/* ===== Header ===== */
+header{
+  position:sticky;top:0;z-index:100;
+  background:#020617;
+  border-bottom:1px solid rgba(0,195,255,.4)
+}
+header .container{
+  width:90%;margin:auto;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 0
+}
+header h1{
+  color:#00c3ff;
+  text-shadow:0 0 10px #00c3ff
+}
+nav ul{list-style:none;display:flex;gap:25px}
+nav a{color:#e0f7ff;text-decoration:none;transition:.3s}
+nav a:hover{color:#00c3ff}
+
+/* ===== Hero ===== */
+.hero{
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(135deg,#020024,#090979,#00d4ff);
+}
+.hero h1{font-size:3rem;text-shadow:0 0 15px #00c3ff}
+.hero p{margin:20px 0;font-size:1.2rem}
+
+/* ===== Buttons ===== */
+.btn{
+  background:linear-gradient(90deg,#00c3ff,#00a0e6);
+  color:#01081f;
+  padding:12px 28px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  transition:.4s
+}
+.btn:hover{transform:translateY(-4px)}
+
+/* ===== Sections ===== */
+section{width:90%;margin:80px auto;text-align:center}
+section h2{
+  font-size:2.2rem;margin-bottom:25px
+}
+section h2::after{
+  content:"";width:80px;height:3px;
+  background:#00c3ff;
+  display:block;margin:10px auto;
+  box-shadow:0 0 10px #00c3ff
+}
+
+/* ===== Cards ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px
+}
+.card{
+  background:rgba(1,8,31,.7);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(0,195,255,.4);
+  border-radius:16px;
+  padding:20px;
+  transition:.4s;
+  text-align:left
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 35px rgba(0,195,255,.7)
+}
+
+/* ===== Forms ===== */
+form{
+  background:#01081f;
+  border:1px solid #00c3ff;
+  border-radius:16px;
+  padding:25px;
+  max-width:600px;
+  margin:40px auto;
+  text-align:left
+}
+label{color:#00c3ff;font-weight:600}
+input,select,textarea{
+  width:100%;padding:12px;margin:10px 0;
+  border:none;border-radius:8px;
+  background:#222;color:#e0f7ff
+}
+
+/* ===== Footer ===== */
+footer{
+  background:#020617;
+  border-top:1px solid rgba(0,195,255,.3);
+  padding:20px;
+  text-align:center;
+  color:#00c3ff
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1>ITsupport</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#ticket">Ticket</a></li>
+        <li><a href="#admin">Admin</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div>
+    <h1>IT Help Desk System</h1>
+    <p>Plateforme professionnelle de gestion des incidents IT</p>
+    <a href="#ticket" class="btn">Créer un Ticket</a>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Services IT</h2>
+  <div class="grid">
+    <div class="card"><h3>Support Facturation</h3><p>Problèmes de factures et paiements</p></div>
+    <div class="card"><h3>Connexion Internet</h3><p>ADSL, Fibre, Réseau</p></div>
+    <div class="card"><h3>Applications</h3><p>Bugs logiciels & systèmes</p></div>
+    <div class="card"><h3>Help Desk</h3><p>Gestion centralisée des tickets</p></div>
+  </div>
+</section>
+
+<section id="ticket">
+  <h2>Créer un Ticket IT</h2>
+
+  <form id="ticketForm">
+    <label>Nom</label>
+    <input id="name" required>
+
+    <label>Email</label>
+    <input id="email" type="email" required>
+
+    <label>Téléphone</label>
+    <input id="phone" required>
+
+    <label>Type de problème</label>
+    <select id="type">
+      <option>Facturation</option>
+      <option>Connexion Internet</option>
+      <option>Application</option>
+      <option>Autre</option>
+    </select>
+
+    <label>Description du problème</label>
+    <textarea id="message" required></textarea>
+
+    <button class="btn">Envoyer Ticket</button>
+  </form>
+
+  <button class="btn" onclick="getMyTickets()">Mes Tickets</button>
+</section>
+
+<section id="admin">
+  <h2>Admin – Tickets reçus</h2>
+  <div id="tickets" class="grid"></div>
+</section>
+
+<section id="contact">
+  <h2>Contact IT Support</h2>
+  <p>Email : support@itsupport.tn</p>
+  <p>Téléphone : +216 XX XXX XXX</p>
+</section>
+
+<footer>
+  © 2025 ITsupport – IT Help Desk Project
+</footer>
+
+<script>
+const form = document.getElementById("ticketForm");
+const ticketsDiv = document.getElementById("tickets");
+
+function loadTickets(){
+  ticketsDiv.innerHTML = "";
+  const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
+  tickets.forEach((t,index)=>{
+    ticketsDiv.innerHTML += `
+      <div class="card">
+        <h3>Ticket #${t.id}</h3>
+        <p><b>Nom :</b> ${t.name}</p>
+        <p><b>Email :</b> ${t.email}</p>
+        <p><b>Téléphone :</b> ${t.phone}</p>
+        <p><b>Type :</b> ${t.type}</p>
+        <p><b>Description :</b></p>
+        <p>${t.message}</p>
+
+        <label><b>Status :</b></label>
+        <select onchange="updateStatus(${index},this.value)">
+          <option ${t.status=="Nouveau"?"selected":""}>Nouveau</option>
+          <option ${t.status=="En cours"?"selected":""}>En cours</option>
+          <option ${t.status=="Résolu"?"selected":""}>Résolu</option>
+        </select>
+      </div>
+    `;
+  });
+}
+
+function updateStatus(index,status){
+  const tickets = JSON.parse(localStorage.getItem("tickets"));
+  tickets[index].status = status;
+  localStorage.setItem("tickets",JSON.stringify(tickets));
+}
+
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const ticket={
+    id:Date.now(),
+    name:name.value,
+    email:email.value,
+    phone:phone.value,
+    type:type.value,
+    message:message.value,
+    status:"Nouveau"
+  };
+
+  const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+  tickets.push(ticket);
+  localStorage.setItem("tickets",JSON.stringify(tickets));
+
+  alert("Ticket envoyé ✔");
+  form.reset();
+  loadTickets();
+});
+
+function getMyTickets(){
+  const mail = prompt("Entrez votre email");
+  if(!mail) return;
+
+  const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+  const mine = tickets.filter(t=>t.email===mail);
+
+  ticketsDiv.innerHTML="";
+  mine.forEach(t=>{
+    ticketsDiv.innerHTML+=`
+      <div class="card">
+        <h3>Ticket #${t.id}</h3>
+        <p><b>Type :</b> ${t.type}</p>
+        <p><b>Description :</b> ${t.message}</p>
+        <p><b>Status :</b> ${t.status}</p>
+      </div>
+    `;
+  });
+}
+
+loadTickets();
+</script>
+
+</body>
+</html>
